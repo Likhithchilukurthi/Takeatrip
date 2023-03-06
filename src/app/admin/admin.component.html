@@ -1,0 +1,225 @@
+
+<div class="container w-75 color-change-2x mt-5">
+  <div class="d-flex d-inline-block flex-row justify-content-center rounded-pill bg-white container w-75 py-3 mt-5 shadow-lg rounded">
+    <div class="px-3"><h6 class="btn rounded-pill text-white" (click)="changactiontype('view')" [style.background]="viewbtncolor">View/delete</h6></div>
+    <div class="px-3"><h6 class="btn rounded-pill text-white" (click)="changactiontype('add')" [style.background]="addbtncolor">Add/update</h6></div>
+
+</div>
+<!-- choosing service type-->
+
+<div class="d-flex d-inline-block flex-row justify-content-center  container w-75 py-3 mt-5 align-items-center" *ngIf="actiontype=='view'">
+  <p class="text-white">Select service</p>
+  <div class="px-3"><h6 class="btn rounded-pill text-white" (click)="changeservicetype('holiday')" [style.background]="holidaybtncolor">Holidays</h6></div>
+  <div class="px-3"><h6 class="btn rounded-pill text-white" (click)="changeservicetype('hotel')" [style.background]="hotelbtncolor">Hotels</h6></div>
+</div>
+
+
+<!-- Displaying form when we want to add or update services-->
+    <form #usersignup = "ngForm" (ngSubmit) = "onClickSubmit(usersignup.value)" *ngIf="actiontype=='add'">
+        <div class="mb-3 mt-5 pt-3">
+            <h4 style="color:#ffffff">Choose Activity</h4>
+        
+        <div class="form-check form-check-inline" style="color:#faf9f2">
+            <input class="form-check-input" type="radio" name="activitytype" value="create" required ngModel>Create New
+          </div>
+          <div class="form-check form-check-inline" style="color:#f7f6f3">
+            <input class="form-check-input" type="radio" name="activitytype" value="modify" required ngModel>Update Existing
+          </div>
+
+        </div>
+        <div class="mb-3">
+            <h4 style="color:#ffffff">Choose Service Type</h4>
+            <div class="form-check form-check-inline text-center" style="color:#fdfdfc">
+                <input class="form-check-input" type="radio" name="servicetype" value="hotel" required ngModel>Hotel
+              </div>
+              <div class="form-check form-check-inline text-center" style="color:#fcfbf7">
+                <input class="form-check-input" type="radio" name="servicetype" value="holiday" required ngModel>Holiday Package
+              </div>
+            </div>
+
+            <div class="mt-5 text-center text-white mb-3 pb-5" *ngIf="usersignup.value.servicetype=='' || usersignup.value.activitytype==''"><h5 class="tracking-in-expand">Please choose both activity and service types to proceed</h5></div>
+
+
+        <div *ngIf="usersignup.value.servicetype=='holiday' && usersignup.value.activitytype=='create'" style="border: 3px solid #0c4261;" class="p-3">
+          <div class="mb-3 text-center">
+            <h5 class="tracking-in-expand text-white">Add a Holiday Package</h5>
+          </div>
+    <div class="mb-3">
+            <input type="text" class="form-control" id="packageid" placeholder="Enter Holiday Package  Id" name="packageid" required ngModel>
+          </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" id="packagename" placeholder="Enter Holiday Package name" name="packagename" ngModel>
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" id="packagedestcity" placeholder="Enter Holiday Package Destination City" name="packagecity" ngModel>
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" id="packageprice" placeholder="Enter Holiday Package price" name="packageprice" ngModel>
+      </div>
+      <div class="mb-3">
+        <input type="number" class="form-control" id="packagenights" placeholder="Enter Holiday Package Duration in Nights" name="packagenights" ngModel>
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" id="packagefacilites" placeholder="Enter WHat Holiday Package Includes(coma Seperated)" name="packagefeatures" ngModel>
+      </div>
+      <div class="mb-3">
+        <input type="file" class="formcontrol" (change)='incomingfile($event)' name="image" accept='image/*' placeholder="Upload Product Image" >
+      </div>
+     
+      <div class="text-center">
+      <button type="submit" class="btn btn-default btn-primary " style="background-color:#0c4261">Submit</button>
+    </div>
+</div>
+
+
+
+    <div *ngIf="usersignup.value.servicetype=='hotel' && usersignup.value.activitytype=='create'" style="border: 3px solid #0c4261;" class="p-3">
+      <div class="mb-3 text-center">
+        <h5 class="tracking-in-expand text-white">Add a hotel</h5>
+      </div>
+        <div class="mb-3">
+                <input type="text" class="form-control" id="hotelid" placeholder="Enter Hotel Id" name="hotelid" required ngModel>
+              </div>
+          <div class="mb-3">
+            <input type="text" class="form-control" id="hotelname" placeholder="Enter Hotel name" name="hotelname" ngModel>
+          </div>
+          <div class="mb-3">
+            <input type="text" class="form-control" id="hotelcity" placeholder="Enter Hotel Location City" name="hotelcity" ngModel>
+          </div>
+          <div class="mb-3">
+            <input type="text" class="form-control" id="hotelprice" placeholder="Enter Room price per night" name="hotelprice" ngModel>
+          </div>
+          <div class="mb-3">
+            <input type="number" class="form-control" id="hotelcapacity" placeholder="Enter Number of rooms in hotel" name="hotelrooms" ngModel>
+          </div>
+          <div class="mb-3">
+            <input type="file" class="formcontrol" (change)='incomingfile($event)' name="image" accept='image/*' placeholder="Upload Product Image" >
+          </div>
+         
+          <div class="text-center">
+          <button type="submit" class="btn btn-default btn-primary" style="background-color:#0c4261">Submit</button>
+        </div></div>
+    
+
+
+
+    <div *ngIf="usersignup.value.servicetype=='holiday' && usersignup.value.activitytype=='modify'" style="border: 3px solid #0c4261;" class="p-3">
+      <div class="mb-3 text-center">
+        <h5 class="tracking-in-expand text-white">Update Holiday Package</h5>
+      </div>
+       <!-- <div class="mb-3">
+                <input type="text" class="form-control" id="packageid" placeholder="Enter Holiday Package  Id" name="packageid" required ngModel>
+              </div>-->
+              <div class="mb-3">
+                <select class="form-select" aria-label="Default select example" required placeholder="Enter Holiday Package  Id" name="packageid" ngModel >
+                  <option  [value]="package.package_id" *ngFor="let package of packageitems">{{package.package_id}}</option>
+                </select>
+                <div id="emailHelp" class="form-text text-white">Select package Id.</div>
+              </div>
+          
+         
+          <div class="mb-3">
+            <input type="text" class="form-control" id="packageprice" placeholder="Enter Holiday Package price" name="packageprice" ngModel>
+          </div>
+          <div class="mb-3">
+            <input type="number" class="form-control" id="packagenights" placeholder="Enter Holiday Package Duration in Nights" name="packagenights" ngModel>
+          </div>
+          <div class="mb-3">
+            <input type="text" class="form-control" id="packagefacilites" placeholder="Enter WHat Holiday Package Includes(coma Seperated)" name="packagefeatures" ngModel>
+          </div>
+          <div class="mb-3 text-center">
+            <p class="text-white"><span style="color:red">*</span> You can update single or multiple details at a time</p>
+          </div>
+          <div class="text-center mb-5">
+          <button type="submit" class="btn btn-default btn-primary" style="background-color:#0c4261">Submit</button>
+        </div>
+      </div>
+
+
+
+
+        <div *ngIf="usersignup.value.servicetype=='hotel' && usersignup.value.activitytype=='modify'" style="border: 3px solid #0c4261;" class="p-3">
+          <div class="mb-3 text-center">
+            <h5 class="tracking-in-expand text-white">Update Hotel</h5>
+          </div>
+            <!--<div class="mb-3">
+                    <input type="text" class="form-control" id="hotelid" placeholder="Enter Hotel Id" name="hotelid" required ngModel>
+                  </div>-->
+                  <div class="mb-3">
+                    <select class="form-select" aria-label="Default select example" required  name="hotelid" ngModel >
+                      
+                      <option  [value]="hotel.hotel_id" *ngFor="let hotel of hotelitems">{{hotel.hotel_id}}</option>
+                    </select>
+                    <div id="emailHelp" class="form-text text-white">Select Hotel Id.</div>
+                  </div>
+              <div class="mb-3">
+                <input type="text" class="form-control" id="hotelname" placeholder="Enter Hotel name" name="hotelname" ngModel>
+              </div>
+              <div class="mb-3">
+                <input type="text" class="form-control" id="hotelprice" placeholder="Enter Room price per night" name="hotelprice" ngModel>
+              </div>
+              <div class="mb-3">
+                <input type="number" class="form-control" id="hotelcapacity" placeholder="Enter Number of rooms in hotel" name="hotelrooms" ngModel>
+              </div>
+              <div class="mb-3 text-center">
+                <p class="text-white"><span style="color:red">*</span> You can update single or multiple details at a time.</p>
+              </div>
+              <div class="text-center mb-5">
+              <button type="submit" class="btn btn-default btn-primary" style="background-color:#0c4261">Submit</button>
+            </div>
+            
+        </div>
+    
+    </form>
+
+<!--Display holiday packages if admin selects-->
+<div *ngIf="actiontype=='view' && servicetype=='holiday'">
+<div class="container text-center text-white" *ngIf="packlen==0"><h4>No Holiday packages to display</h4></div>
+<div class="container d-md-flex flex-wrap  flex-row justify-content-center" *ngIf="packlen!=0">
+        <div *ngFor='let package of packageitems'>
+          <div class="card mt-3 text-center mr-2 card-deck" style='width: 15rem;'>
+              <img [src]="package.image" class="imgcenter card-img-top" style="width:100%;height:200px">
+              <div class="card-body">
+                <h5 class="card-title">{{package.package_name}}</h5>
+                <p class="card-text">Id: {{package.package_id}}</p>
+                <p class="card-text">Duration(in nights): {{package.package_nights}}</p>
+                <p class="card-text">Cost: {{package.package_price}}</p>
+              </div>
+              <div class="card-body">
+                <button type="button" class="btn btn-danger" aria-label="Close" (click)="deletepackageitem(package.package_id)">Delete Package</button>
+              </div>
+            </div>
+          
+        </div>
+      
+    </div>
+  </div>
+
+
+  <!--Display hotels if admin selects-->
+<div *ngIf="actiontype=='view' && servicetype=='hotel'">
+  <div class="container text-center text-white" *ngIf="hotlen==0"><h4>No Hotels to display</h4></div>
+  <div class="container d-md-flex  flex-wrap flex-row justify-content-center" *ngIf="hotlen!=0">
+          <div *ngFor='let hotel of hotelitems'>
+            <div class="card mt-3 text-center mr-2"  style='width: 15rem;'>
+                <img [src]="hotel.image" class="imgcenter card-img-top" style="width:100%;height:200px">
+                <div class="card-body">
+                  <h5 class="card-title">{{hotel.hotel_name}}</h5>
+                  <p class="card-text">Hotel Id: {{hotel.hotel_id}}</p>
+                  <p class="card-text">capacity(in rooms): {{hotel.hotel_rooms_count}}</p>
+                  <p class="card-text">Price(per room): {{hotel.hotel_price_pernight}}</p>
+                  <p class="card-text">City: {{hotel.hotel_city}}</p>
+                </div>
+                <div class="card-body">
+                  <button type="button" class="btn btn-danger" aria-label="Close" (click)="deletehotelitem(hotel.hotel_id)">Delete Hotel</button>
+                </div>
+              </div>
+            
+          </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+ 

@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+.launch-page-div{
+  background-image:linear-gradient(rgb(3, 18, 31),rgb(10, 73, 128)) ;
+  min-height: 100vh;
+  background-size: cover;
+    width: 100%;
+  font-family: 'Balsamiq Sans', cursive;
+}
+.tracking-in-expand{animation:tracking-in-expand .7s cubic-bezier(.215,.61,.355,1.000) both}
+.color-change-2x{animation:color-change-2x 2s linear infinite alternate both}
+@keyframes color-change-2x{0%{background:rgb(3, 18, 31)}100%{background:rgb(10, 73, 128)}}
+
+ @keyframes tracking-in-expand{0%{letter-spacing:-.5em;opacity:0}40%{opacity:.6}100%{opacity:1}}
+
+ .imgcenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.no-border {
+  border: 0;
+  box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
+}
+.no-border:focus{
+  box-shadow: none;
+}
+.invalid-feedback {
+  display: none;
+  width: 100%;
+  margin-top: .25rem;
+  font-size: .875em;
+  color: #dc3545;
+}
+
+  
+      .ngx-slider-pointer-min {
+        outline: none;
+
+      }
+      .ngx-slider-pointer-max{
+        outline: none;
+        }
+        
+  

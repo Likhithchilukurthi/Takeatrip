@@ -1,0 +1,124 @@
+<div class="launch-page-div pb-5">
+  <div class=" d-none d-md-block">
+<div id="header" *ngIf="scrolled == 0" >
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="container-fluid d-flex flex-row justify-content-between">
+<div class="mt-2"><a class="navbar-brand " href="#"><img src="../../assets/logos/logo_white.png"  height="40px"/></a></div>
+<div class="mt-2" *ngIf="isloggedin=='removed'"><a class="navbar-brand" routerLink="login"><button class="btn px-4 text-white" style="background-image:linear-gradient(to right,rgb(110, 168, 223),#1885f1);border-radius: 25px;">Login or create Account</button></a></div>
+<div class="mt-2" *ngIf="isloggedin=='added'">
+  <div class="container-fluid d-flex flex-row justify-content-center align-items-baseline">
+    <div class="text-center mr-1 px-3"><p class="text-white" *ngIf="loggeduser!=''">
+      <div class="dropdown">
+        <a class="text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+          Hello,  {{loggeduser}}
+        </a>
+      
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li><a class="dropdown-item text-primary" routerLink="userbookings"><i class="fa fa-suitcase" aria-hidden="true" style="color:#f0772c"></i> My Bookings</a></li>
+          <li><a class="dropdown-item text-primary" routerLink="userprofile"><i class="fa fa-user" aria-hidden="true" style="color:#f0772c"></i> My Profile</a></li>
+        </ul>
+      </div>
+    </div>
+    <div><a class="navbar-brand" routerLink="/"><button class="btn px-4 text-white" (click)="logoutuser()" style="background-image:linear-gradient(to right,rgb(110, 168, 223),#1885f1);border-radius: 25px;">Logout</button></a></div>
+  </div>
+</div>
+          </div>
+        </nav>
+        <div class="container w-50 bg-white mt-3 py-3 px-2" style="border-radius:25px;">
+            <div class="d-flex flex-row justify-content-center" >
+                <div style="text-align: center;"><a class="navbar-brand " routerLink="hotels"><!--<i style='font-size:24px;color:#696969' class='fas fa-city'></i>--><img src="../assets/hotels.png" height="30px" width="30px"/>
+                <br><span class="text-dark" style="text-align: center;">Hotels</span></a></div>
+                <div style="text-align: center;"><a class="navbar-brand " routerLink="holidays"><!--<i class="fas fa-parachute-box" style='font-size:24px;color:#696969'></i>--><img src="../assets/holidays.png" height="30px" width="30px"/> <br><span class=" text-dark"  style="text-align: center;">Holidays</span></a></div>
+                          </div>
+        </div>
+    </div>
+<div id="header2" *ngIf="scrolled == 1">
+    <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><img src="../../assets/logos/logo_blue.png"  height="40px"/></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+              <div class="container w-50">
+                <div class="d-flex flex-row justify-content-center" >
+                    <div style="text-align: center;"><a class="navbar-brand " routerLink="hotels"><img src="../assets/hotels.png" height="30px" width="30px"/>
+                    <br><span class="text-dark" style="text-align: center;">Hotels</span></a></div>
+                    <div style="text-align: center;"><a class="navbar-brand " routerLink="holidays"><img src="../assets/holidays.png" height="30px" width="30px"/> <br><span class=" text-dark"  style="text-align: center;">Holidays</span></a></div>
+                              </div>
+                            </div>
+                <div class=" d-flex flex-row justify-content-center" >
+                  <div class="mt-2" *ngIf="isloggedin=='removed'"><a class="navbar-brand" routerLink="login"><button class="btn px-4 text-white" style="background-image:linear-gradient(to right,rgb(110, 168, 223),#1885f1);border-radius: 25px;">Login or create Account</button></a></div>
+                  <div class="mt-2" *ngIf="isloggedin=='added'">
+                    <div class="container-fluid d-flex flex-row justify-content-center align-items-baseline">
+                      <div class="text-center mr-1 px-3"><p class="text-primary" *ngIf="loggeduser!=''">
+                        <div class="dropdown">
+                          <a class="text-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+                            Hello,  {{loggeduser}}
+                          </a>
+                        <!--My bookings-->
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item text-primary" routerLink="userbookings"><i class="fa fa-suitcase" aria-hidden="true" style="color:#f0772c"></i> My Bookings</a></li>
+                            <!--My profile-->
+                          <li><a class="dropdown-item text-primary" routerLink="userprofile"><i class="fa fa-user" aria-hidden="true" style="color:#f0772c"></i> My Profile</a></li>
+                          </ul>
+                        </div>
+
+                      </div>
+                      <div><a class="navbar-brand" routerLink="/"><button class="btn px-4 text-white" (click)="logoutuser()" style="background-image:linear-gradient(to right,rgb(110, 168, 223),#1885f1);border-radius: 25px;">Logout</button></a></div>
+                    </div>
+                  </div> 
+              </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+
+  <div id="header3" class="d-block d-md-none">
+    <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><img src="../../assets/logos/logo_blue.png"  height="40px"/></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+              <div class="container w-50">
+                <div class="d-flex flex-row justify-content-center" >
+                    <div style="text-align: center;"><a class="navbar-brand " routerLink="hotels"><img src="../assets/hotels.png" height="30px" width="30px"/>
+                    <br><span class="text-dark" style="text-align: center;">Hotels</span></a></div>
+                    <div style="text-align: center;"><a class="navbar-brand " routerLink="holidays"><img src="../assets/holidays.png" height="30px" width="30px"/> <br><span class=" text-dark"  style="text-align: center;">Holidays</span></a></div>
+                              </div>
+                            </div>
+                <div class=" d-flex flex-row justify-content-center" >
+                <div class="mt-2" *ngIf="isloggedin=='removed'"><a class="navbar-brand" routerLink="login"><button class="btn px-4 text-white" style="background-image:linear-gradient(to right,rgb(110, 168, 223),#1885f1);border-radius: 25px;">Login or create Account</button></a></div>
+                <div class="mt-2" *ngIf="isloggedin=='added'"><a class="navbar-brand" routerLink="/"><button class="btn px-4 text-white" (click)="logoutuser()" style="background-image:linear-gradient(to right,rgb(110, 168, 223),#1885f1);border-radius: 25px;">Logout</button></a></div>  
+              </div>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid d-flex flex-row justify-content-end  mt-5">
+        <div class="text-center mr-1 pt-4"><p class="text-white" *ngIf="loggeduser!='' && isloggedin=='added'">
+          <div class="dropdown">
+            <a class="text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;" *ngIf="loggeduser!='' && isloggedin=='added'">
+              Hello,  {{loggeduser}}
+            </a>
+          
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li><a class="dropdown-item text-primary" routerLink="userbookings"><i class="fa fa-suitcase" aria-hidden="true" style="color:#f0772c"></i> My Bookings</a></li>
+              <li><a class="dropdown-item text-primary" routerLink="userprofile"><i class="fa fa-user" aria-hidden="true" style="color:#f0772c"></i> My Profile</a></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+<router-outlet></router-outlet>
+</div>
+<div class="container-fluid d-flex flex-row justify-content-between" style="background-color:black;">
+  <div class="mt-2 pt-3"><a class="navbar-brand " href="#"><i style="font-size:26px;color: white;" class="fa">&#xf09a;</i></a></div>
+  <div class="mt-2"><h5 class="text-white">&copy; Copy Rights 2021</h5>
+  <h6 class="text-white text-center">All rights reserved by company.</h6>
+  </div>
+    </div>
